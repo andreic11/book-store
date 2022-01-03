@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryAPI.Models.Users;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LibraryAPI.DTO
@@ -10,6 +11,8 @@ namespace LibraryAPI.DTO
 
         [Required]
         public string Password { get; set; }
+
+        public Role Role { get; set; }
 
         public Guid Id { get; set; }
 
