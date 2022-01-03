@@ -38,7 +38,7 @@ namespace LibraryAPI.Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                Role = Role.User,
+                Role = model.Role,
                 PasswordHash = BCryptNet.HashPassword(model.Password)
             };
 
