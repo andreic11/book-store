@@ -1,4 +1,7 @@
 ﻿using LibraryAPI.Models.Base;
+using LibraryAPI.Models.Books;
+using LibraryAPI.Models.Carts;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace LibraryAPI.Models.Users
@@ -17,5 +20,11 @@ namespace LibraryAPI.Models.Users
         public string PasswordHash { get; set; }
 
         public Role Role { get; set; }
+
+        public Cart Cart { get; set; }
+
+        //public Author Author { get; set; }
+
+        public ICollection<BooksAuthors> BooksAuthors { get; set; }
     }
 }
