@@ -15,8 +15,6 @@ namespace LibraryAPI.Data
 
         public DbSet<Book> Books { get; set; }
 
-        //public DbSet<Author> Authors { get; set; }
-
         public DbSet<BooksAuthors> BooksAuthors { get; set; }
 
         public LibraryAPIContext(DbContextOptions<LibraryAPIContext>options) : base(options)
@@ -43,12 +41,6 @@ namespace LibraryAPI.Data
                 .HasOne(user => user.Cart)
                 .WithOne(cart => cart.User)
                 .HasForeignKey<Cart>(cart => cart.UserId);
-
-            //one to one
-            /*builder.Entity<User>()
-                .HasOne(user => user.Author)
-                .WithOne(author => author.User)
-                .HasForeignKey<Author>(author => author.UserId);*/
 
             //One to Many
             builder.Entity<Cart>()

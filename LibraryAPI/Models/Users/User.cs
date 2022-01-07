@@ -23,8 +23,6 @@ namespace LibraryAPI.Models.Users
 
         public Cart Cart { get; set; }
 
-        //public Author Author { get; set; }
-
         public ICollection<BooksAuthors> BooksAuthors { get; set; }
     }
 }
