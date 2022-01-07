@@ -12,7 +12,7 @@ namespace LibraryAPI.Models.Books
 
         public Guid AuthorId { get; set; }
 
-        public Author Author { get; set; }
+        public User Author { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime? CreatedAt { get; set; }

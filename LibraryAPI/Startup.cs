@@ -45,6 +45,10 @@ namespace LibraryAPI
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddScoped<IJWTUtils, JWTUtils>();
             services.AddScoped<IUserService, UserService>();
+
+            // Books
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBookService, BookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

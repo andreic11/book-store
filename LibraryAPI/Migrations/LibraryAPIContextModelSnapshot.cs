@@ -19,38 +19,13 @@ namespace LibraryAPI.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("LibraryAPI.Models.Books.Author", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Authors");
-                });
-
             modelBuilder.Entity("LibraryAPI.Models.Books.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CartId")
+                    b.Property<Guid?>("CartId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -160,41 +135,28 @@ namespace LibraryAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5b01e2b0-6cf0-4acb-9a30-4571c5a8e995"),
+                            Id = new Guid("92690644-7c8b-4d7a-8d92-4250b8738d3c"),
                             Email = "admin@gmail.com",
                             FirstName = "Admin",
                             LastName = "Admin",
-                            PasswordHash = "$2b$10$1EOOhT2/Xj9HlMFOBAr4vOTX1W.vy2IJbmeZvcTzx7y1BWjumuVeO",
+                            PasswordHash = "$2b$10$I7dYdRitsshagYY9Opu/nuh9lJQCp5pSXko2XbLvU6bRcfMKFjpee",
                             Role = 0,
                             UserName = "admin"
                         });
-                });
-
-            modelBuilder.Entity("LibraryAPI.Models.Books.Author", b =>
-                {
-                    b.HasOne("LibraryAPI.Models.Users.User", "User")
-                        .WithOne("Author")
-                        .HasForeignKey("LibraryAPI.Models.Books.Author", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LibraryAPI.Models.Books.Book", b =>
                 {
                     b.HasOne("LibraryAPI.Models.Carts.Cart", "Cart")
                         .WithMany("Books")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartId");
 
                     b.Navigation("Cart");
                 });
 
             modelBuilder.Entity("LibraryAPI.Models.Books.BooksAuthors", b =>
                 {
-                    b.HasOne("LibraryAPI.Models.Books.Author", "Author")
+                    b.HasOne("LibraryAPI.Models.Users.User", "Author")
                         .WithMany("BooksAuthors")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -222,11 +184,6 @@ namespace LibraryAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LibraryAPI.Models.Books.Author", b =>
-                {
-                    b.Navigation("BooksAuthors");
-                });
-
             modelBuilder.Entity("LibraryAPI.Models.Books.Book", b =>
                 {
                     b.Navigation("BooksAuthors");
@@ -239,7 +196,7 @@ namespace LibraryAPI.Migrations
 
             modelBuilder.Entity("LibraryAPI.Models.Users.User", b =>
                 {
-                    b.Navigation("Author");
+                    b.Navigation("BooksAuthors");
 
                     b.Navigation("Cart");
                 });

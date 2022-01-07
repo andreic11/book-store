@@ -7,6 +7,6 @@ namespace LibraryAPI.Repositories.DbRepositories
 {
     public interface IBookRepository : IGenericRepository<Book>
     {
-        List<Book> GetAllByAuthor(Guid authorId);
+        Book GetByTitle(string title);
     }
 }

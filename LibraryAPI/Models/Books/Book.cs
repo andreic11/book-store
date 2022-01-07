@@ -15,7 +15,7 @@ namespace LibraryAPI.Models.Books
 
         public Cart Cart { get; set; }
 
-        public Guid CartId { get; set; }
+        public Guid? CartId { get; set; }
 
         public ICollection<BooksAuthors> BooksAuthors { get; set; }
     }

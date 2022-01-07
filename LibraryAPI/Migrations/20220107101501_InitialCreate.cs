@@ -27,26 +27,6 @@ namespace LibraryAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Authors",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Authors", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Authors_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Carts",
                 columns: table => new
                 {
@@ -74,7 +54,7 @@ namespace LibraryAPI.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CartId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -86,7 +66,7 @@ namespace LibraryAPI.Migrations
                         column: x => x.CartId,
                         principalTable: "Carts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,29 +81,23 @@ namespace LibraryAPI.Migrations
                 {
                     table.PrimaryKey("PK_BooksAuthors", x => new { x.BookId, x.AuthorId });
                     table.ForeignKey(
-                        name: "FK_BooksAuthors_Authors_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Authors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_BooksAuthors_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BooksAuthors_Users_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "FirstName", "LastName", "PasswordHash", "Role", "UserName" },
-                values: new object[] { new Guid("5b01e2b0-6cf0-4acb-9a30-4571c5a8e995"), "admin@gmail.com", "Admin", "Admin", "$2b$10$1EOOhT2/Xj9HlMFOBAr4vOTX1W.vy2IJbmeZvcTzx7y1BWjumuVeO", 0, "admin" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Authors_UserId",
-                table: "Authors",
-                column: "UserId",
-                unique: true);
+                values: new object[] { new Guid("92690644-7c8b-4d7a-8d92-4250b8738d3c"), "admin@gmail.com", "Admin", "Admin", "$2b$10$I7dYdRitsshagYY9Opu/nuh9lJQCp5pSXko2XbLvU6bRcfMKFjpee", 0, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CartId",
@@ -146,9 +120,6 @@ namespace LibraryAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BooksAuthors");
-
-            migrationBuilder.DropTable(
-                name: "Authors");
 
             migrationBuilder.DropTable(
                 name: "Books");
