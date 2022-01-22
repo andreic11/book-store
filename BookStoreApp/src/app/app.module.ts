@@ -15,6 +15,8 @@ import { BookFormComponent } from './components/books-page/book-form/book-form.c
 import { UserFormComponent } from './components/register-user/user-form/user-form.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
+import { UsersPageComponent } from './components/users-page/users-page.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { LoginFormComponent } from './components/login/login-form/login-form.com
     BookFormComponent,
     UserFormComponent,
     RegisterUserComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    UsersPageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
