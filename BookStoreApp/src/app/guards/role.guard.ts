@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
 import { UserService } from "../services/user.service";
 
 @Injectable({
     providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class RoleGuard implements CanActivate {
     constructor(private _userService:UserService,
         private _router:Router){
-
     }
     canActivate(
         route: ActivatedRouteSnapshot, 
@@ -20,13 +19,12 @@ export class AuthGuard implements CanActivate {
         UrlTree> | 
         Promise<boolean | UrlTree> {
 
-        if(!this._userService.loggedIn()){
-            alert("You are not authentificated!")
-            this._router.navigateByUrl('login');
-            return false;
+        let role = this._userService.getRole();
+        if(role.toUpperCase().localeCompare("ADMIN")==0){
+            return true;
         }
-
-        return true;
+        alert("You don't have admin rights");
+        this._router.navigateByUrl('home');
+        return false;
     }
-
 }
