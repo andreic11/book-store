@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 
@@ -14,9 +14,9 @@ import { BooksPageComponent } from './components/books-page/books-page.component
 import { BookFormComponent } from './components/books-page/book-form/book-form.component';
 import { UserFormComponent } from './components/register-user/user-form/user-form.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { LoginFormComponent } from './components/login/login-form/login-form.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
 import { CartComponent } from './components/cart/cart.component';
+import { HeadersInterceptor } from './interceptors/headers.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { CartComponent } from './components/cart/cart.component';
     BookFormComponent,
     UserFormComponent,
     RegisterUserComponent,
-    LoginFormComponent,
     UsersPageComponent,
     CartComponent
   ],
@@ -40,7 +39,13 @@ import { CartComponent } from './components/cart/cart.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeadersInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

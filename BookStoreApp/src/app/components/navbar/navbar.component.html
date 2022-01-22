@@ -8,6 +8,7 @@
                 <li class="nav-item"><a class="nav-link" href="#!" routerLink="/cart" routerLinkActive="active">Cart</a></li>
                 <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" href="#!"  routerLink="/login" routerLinkActive="active">Login</a></li>
                 <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" href="#!"  routerLink="/users/register" routerLinkActive="active">Register</a></li>
+                <li *ngIf="userService.isAdmin()" class="nav-item"><a class="nav-link" href="#!"  routerLink="/users" routerLinkActive="active">Users</a></li> 
                 <li *ngIf="userService.loggedIn()" class="nav-item" (click)="userService.logOut()"><a class="nav-link" href="#!"  routerLink="/" routerLinkActive="active">Logout</a></li>    
             </ul>
         </div>

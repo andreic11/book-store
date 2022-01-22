@@ -25,6 +25,12 @@ export class UserService {
     return this.http.post(this.baseURL+"/authentificate", this.formData);
   }
 
+  getUsers(){
+    this.http.get(this.baseURL)
+    .toPromise()
+    .then(res => this.list = res as User[]);
+  }
+
   loggedIn(){
     return !!localStorage.getItem(UserService.AUTH_KEY);
   }
@@ -43,5 +49,13 @@ export class UserService {
       return payloadData.role;
     }
     return "";
+  }
+
+  isAdmin(){
+    let role = this.getRole();
+    if(role.toUpperCase().localeCompare("ADMIN")==0){
+        return true;
+    }
+    return false;
   }
 }
