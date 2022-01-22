@@ -41,7 +41,7 @@ export class BookFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Book updated Successful', 'Update')
+        this.toastr.info('Book updated Successful', 'Update');
       },
       err => { console.log(err); }
     );

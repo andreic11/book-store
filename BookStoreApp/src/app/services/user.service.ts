@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { User, UserRequest } from '../models/user.model';
 
 @Injectable({
@@ -7,7 +8,8 @@ import { User, UserRequest } from '../models/user.model';
 })
 export class UserService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+    private toastr:ToastrService) { }
 
   readonly baseURL = 'https://localhost:44350/api/Users';
   formData : UserRequest = new UserRequest();
@@ -20,5 +22,14 @@ export class UserService {
 
   authenticateUser(){
     return this.http.post(this.baseURL+"/authentificate", this.formData);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token');
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
+    this.toastr.info('Successful', 'Logout');
   }
 }

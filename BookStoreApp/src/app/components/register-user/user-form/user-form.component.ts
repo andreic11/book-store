@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserRequest } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -12,7 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 export class UserFormComponent implements OnInit {
 
   constructor(public service : UserService,
-    private toastr:ToastrService) { }
+    private toastr:ToastrService,
+    private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +33,7 @@ export class UserFormComponent implements OnInit {
         this.resetForm(form);
         // this.service.refreshList();
         this.toastr.success('Successful', 'User Register')
+        this._router.navigate(['/login']);
       },
       err => { console.log(err); }
     );
