@@ -5,7 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
-import { AuthGuard } from './guards/auth-guard.service';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersPageComponent,
-    canActivate:[AuthGuard]
+    canActivate:[AuthGuard, RoleGuard]
   },
   {
     path: 'cart',

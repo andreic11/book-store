@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
         this.resetForm(form);
         this.toastr.success('Successful', 'Login');
         var u=res as UserAuth;
-        localStorage.setItem('token', u.token);
+        localStorage.setItem(UserService.AUTH_KEY, u.token);
         this._router.navigate(['/home']);
       },
       err => { console.log(err); }
