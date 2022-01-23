@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post(this.baseURL+"/authentificate", this.formData);
   }
 
+  deleteUser(id:string){
+    return this.http.delete(`${this.baseURL}/${id}`);
+  }
+
   getUsers(){
     this.http.get(this.baseURL)
     .toPromise()
