@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
@@ -15,6 +16,7 @@ export class BooksPageComponent implements OnInit {
   constructor(public service: BookService,
     public userService: UserService,
     public cartService: CartService,
+    private _router: Router,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -24,6 +26,15 @@ export class BooksPageComponent implements OnInit {
   populateForm(selectedRecord : Book){
     this.service.formData = Object.assign({}, selectedRecord);
     this.service.formDataId = selectedRecord.id;
+  }
+
+  addBook(){
+    this._router.navigate(['/book/create']);
+  }
+
+  editBook(selectedRecord : Book){
+    this.populateForm(selectedRecord);
+    this._router.navigate([`/book/${selectedRecord.id}`]);
   }
 
   onDelete(id:string){

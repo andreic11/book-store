@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookFormComponent } from './components/book-form/book-form.component';
+import { BooksPageComponent } from './components/books-page/books-page.component';
 import { CartComponent } from './components/cart/cart.component';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
@@ -11,12 +12,25 @@ import { RoleGuard } from './guards/role.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'books',
     pathMatch: 'full'
   },
   {
-    path: 'home', 
-    component: HomeComponent
+    path: 'home',
+    redirectTo: 'books',
+    pathMatch: 'full'
+  },
+  {
+    path: 'books', 
+    component: BooksPageComponent
+  },
+  {
+    path: 'book/create',
+    component: BookFormComponent
+  },
+  {
+    path: 'book/:id',
+    component: BookFormComponent
   },
   {
     path: 'login', 

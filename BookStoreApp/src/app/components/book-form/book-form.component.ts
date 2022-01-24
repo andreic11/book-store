@@ -30,7 +30,7 @@ export class BookFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Successful', 'Book Register')
+        this.toastr.success('Successfully', 'Book Register')
       },
       err => { console.log(err); }
     );
@@ -41,7 +41,7 @@ export class BookFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Book updated Successful', 'Update');
+        this.toastr.info('Book updated successfully', 'Update');
       },
       err => { console.log(err); }
     );
