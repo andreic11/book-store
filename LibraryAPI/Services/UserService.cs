@@ -16,12 +16,14 @@ namespace LibraryAPI.Services
         protected IUserRepository _userRepository;
         private IJWTUtils _jWTUtils;
         private readonly AppSettings _appSettings;
+        private ICartService _cartService;
 
-        public UserService(IUserRepository userRepository, IJWTUtils jWTUtils, IOptions<AppSettings> appSettings)
+        public UserService(IUserRepository userRepository, IJWTUtils jWTUtils, IOptions<AppSettings> appSettings, ICartService cartService)
         {
             _userRepository = userRepository;
             _jWTUtils = jWTUtils;
             _appSettings = appSettings.Value;
+            _cartService = cartService;
         }
 
         public UserResponseDTO Create(UserRequestDTO model)
@@ -44,6 +46,8 @@ namespace LibraryAPI.Services
 
             _userRepository.Create(entity);
             _userRepository.Save();
+
+            _cartService.Create(entity.Id);
 
             return new UserResponseDTO(entity, null);
         }

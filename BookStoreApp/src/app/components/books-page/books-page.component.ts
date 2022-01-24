@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-books-page',
@@ -11,6 +13,8 @@ import { BookService } from 'src/app/services/book.service';
 export class BooksPageComponent implements OnInit {
 
   constructor(public service: BookService,
+    public userService: UserService,
+    public cartService: CartService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -20,7 +24,6 @@ export class BooksPageComponent implements OnInit {
   populateForm(selectedRecord : Book){
     this.service.formData = Object.assign({}, selectedRecord);
     this.service.formDataId = selectedRecord.id;
-    // this.service.formDataId = 
   }
 
   onDelete(id:string){
@@ -30,6 +33,19 @@ export class BooksPageComponent implements OnInit {
         res => {
           this.service.refreshList();
           this.toastr.error("Book deleted successfully", "Delete");
+        },
+        err => {console.log(err);}
+      );
+    }
+  }
+
+  addToCart(bookId:string){
+    var userId = this.userService.getUserId();
+    if(confirm("Add to cart?")){
+      this.cartService.addItem(userId, bookId)
+      .subscribe(
+        res => {
+          this.toastr.info("Book added to cart", "Item added");
         },
         err => {console.log(err);}
       );

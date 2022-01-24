@@ -27,6 +27,9 @@
                     <td>
                         <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(book.id)"></i>
                     </td>
+                    <td *ngIf="userService.loggedIn()">
+                        <i class="fas fa-shopping-basket fa-lg text-success" (click)="addToCart(book.id)"></i>
+                    </td>
                 </tr>
             </tbody>
         </table>

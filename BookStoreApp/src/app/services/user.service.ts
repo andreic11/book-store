@@ -55,6 +55,17 @@ export class UserService {
     return "";
   }
 
+  getUserId(){
+    if(this.loggedIn()){
+      let jwtToken = localStorage.getItem(UserService.AUTH_KEY);
+      jwtToken = jwtToken ? jwtToken : "";
+      var payload = atob(jwtToken.split('.')[1]); //decode from base64
+      const payloadData = JSON.parse(payload);
+      return payloadData.id;
+    }
+    return "";
+  }
+
   isAdmin(){
     let role = this.getRole();
     if(role.toUpperCase().localeCompare("ADMIN")==0){
