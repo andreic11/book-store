@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BookRequest } from 'src/app/models/book.model';
-import { BookService } from 'src/app/services/book.service';
+import { BookService } from 'src/app/books/service/book.service';
 
 @Component({
   selector: 'app-book-form',

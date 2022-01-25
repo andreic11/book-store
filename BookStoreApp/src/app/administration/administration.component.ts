@@ -3,11 +3,11 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-users-page',
-  templateUrl: './users-page.component.html',
-  styleUrls: ['./users-page.component.css']
+  selector: 'app-administration',
+  templateUrl: './administration.component.html',
+  styleUrls: ['./administration.component.css']
 })
-export class UsersPageComponent implements OnInit {
+export class AdministrationComponent implements OnInit {
 
   constructor(public service: UserService, private toastr: ToastrService) { }
 

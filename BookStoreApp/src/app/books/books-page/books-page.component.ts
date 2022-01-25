@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book.model';
-import { BookService } from 'src/app/services/book.service';
+import { BookService } from 'src/app/books/service/book.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
