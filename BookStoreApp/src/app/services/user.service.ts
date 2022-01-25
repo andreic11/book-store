@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post(this.baseURL+"/authentificate", this.formData);
   }
 
+  deleteUser(id:string){
+    return this.http.delete(`${this.baseURL}/${id}`);
+  }
+
   getUsers(){
     this.http.get(this.baseURL)
     .toPromise()
@@ -47,6 +51,17 @@ export class UserService {
       var payload = atob(jwtToken.split('.')[1]); //decode from base64
       const payloadData = JSON.parse(payload);
       return payloadData.role;
+    }
+    return "";
+  }
+
+  getUserId(){
+    if(this.loggedIn()){
+      let jwtToken = localStorage.getItem(UserService.AUTH_KEY);
+      jwtToken = jwtToken ? jwtToken : "";
+      var payload = atob(jwtToken.split('.')[1]); //decode from base64
+      const payloadData = JSON.parse(payload);
+      return payloadData.id;
     }
     return "";
   }

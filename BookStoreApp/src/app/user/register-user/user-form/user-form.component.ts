@@ -33,7 +33,7 @@ export class UserFormComponent implements OnInit {
         this.resetForm(form);
         // this.service.refreshList();
         this.toastr.success('Successful', 'User Register')
-        this._router.navigate(['/login']);
+        this._router.navigate(['user/login']);
       },
       err => { console.log(err); }
     );

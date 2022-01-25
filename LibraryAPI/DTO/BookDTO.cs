@@ -15,6 +15,8 @@ namespace LibraryAPI.DTO
 
         public string Description { get; set; }
 
+        public Guid? CartId { get; set; }
+
         public string ImagePath { get; set; }
 
         [JsonIgnore]

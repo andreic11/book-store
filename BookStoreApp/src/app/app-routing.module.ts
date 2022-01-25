@@ -1,40 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './components/cart/cart.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { UsersPageComponent } from './components/users-page/users-page.component';
-import { AuthGuard } from './guards/auth.guard';
-import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    loadChildren: () =>
+      import('src/app/books/books.module').then((m) => m.BooksModule),
   },
   {
-    path: 'home', 
-    component: HomeComponent
+    path: 'user',
+    loadChildren: () =>
+      import('src/app/user/user.module').then((m) => m.UserModule),
   },
   {
-    path: 'login', 
-    component: LoginComponent
-  },
-  {
-    path: 'users',
-    component: UsersPageComponent,
-    canActivate:[AuthGuard, RoleGuard]
+    path: 'administration',
+    loadChildren: () =>
+      import('src/app/administration/administration.module').then((m) => m.AdministrationModule),
   },
   {
     path: 'cart',
-    component: CartComponent,
-    canActivate:[AuthGuard]
+    loadChildren: () =>
+      import('src/app/cart/cart.module').then((m) => m.CartModule),
   },
-  {
-    path: 'users/register', component: RegisterUserComponent
-  }
 ];
 
 @NgModule({

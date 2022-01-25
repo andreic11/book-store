@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BookRequest } from 'src/app/models/book.model';
-import { BookService } from 'src/app/services/book.service';
+import { BookService } from 'src/app/books/service/book.service';
 
 @Component({
   selector: 'app-book-form',
@@ -30,7 +30,7 @@ export class BookFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Successful', 'Book Register')
+        this.toastr.success('Successfully', 'Book Register')
       },
       err => { console.log(err); }
     );
@@ -41,7 +41,7 @@ export class BookFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Book updated Successful', 'Update');
+        this.toastr.info('Book updated successfully', 'Update');
       },
       err => { console.log(err); }
     );

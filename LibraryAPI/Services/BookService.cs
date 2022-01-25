@@ -44,6 +44,7 @@ namespace LibraryAPI.Services
             entity.Title = model.Title;
             entity.Description = model.Description;
             entity.ImagePath = model.ImagePath;
+            entity.CartId = model.CartId;
 
             _bookRepository.Update(entity);
             await _bookRepository.SaveAsync();
