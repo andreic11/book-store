@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BookRequest } from 'src/app/models/book.model';
 import { BookService } from 'src/app/books/service/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-form',
@@ -12,7 +13,8 @@ import { BookService } from 'src/app/books/service/book.service';
 export class BookFormComponent implements OnInit {
 
   constructor(public service: BookService,
-    private toastr:ToastrService) { }
+    private toastr:ToastrService,
+    private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +25,7 @@ export class BookFormComponent implements OnInit {
     }else{
       this.updateRecord(form);
     }
+    this._router.navigate(['/home']);
   }
 
   insertRecord(form:NgForm){

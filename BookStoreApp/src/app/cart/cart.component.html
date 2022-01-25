@@ -1,1 +1,29 @@
-<p>cart works!</p>
+<div class="container">
+    <div class="jumbotron py-3">
+        <h1 class="display-4 text-center">Cart items</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-9 justify-content-center">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>imagePath</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of service.list">
+                        <td>{{book.title}}</td>
+                        <td>{{book.description}}</td>
+                        <td>{{book.imagePath}}</td>
+                        <td>
+                            <i class="far fa-trash-alt fa-lg text-danger" (click)="onRemove(book.id)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

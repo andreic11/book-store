@@ -20,7 +20,7 @@
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{user.role}}</td>
+                    <td>{{getRoleName(user.role)}}</td>
                     <td>
                         &nbsp;&nbsp;
                         <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(user.id)"></i>

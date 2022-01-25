@@ -24,7 +24,7 @@
                             &nbsp;&nbsp;
                             <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(book.id)"></i>
                             &nbsp;&nbsp;
-                            <i *ngIf="userService.loggedIn()" class="fas fa-shopping-basket fa-lg text-success" (click)="addToCart(book.id)"></i>
+                            <i *ngIf="userService.loggedIn() && !userService.isAdmin()" class="fas fa-shopping-basket fa-lg text-success" (click)="addToCart(book.id)"></i>
                         </td>
                     </tr>
                 </tbody>
