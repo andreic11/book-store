@@ -8,5 +8,7 @@ namespace LibraryAPI.Repositories.DbRepositories
     public interface IBookRepository : IGenericRepository<Book>
     {
         Book GetByTitle(string title);
+
+        List<Book> GetAllByCart(Guid cartId);
     }
 }

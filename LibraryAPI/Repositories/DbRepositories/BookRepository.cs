@@ -18,5 +18,12 @@ namespace LibraryAPI.Repositories.DbRepositories
         {
             return _table.FirstOrDefault(b => b.Title.ToLower().Equals(title.ToLower()));
         }
+
+        public List<Book> GetAllByCart(Guid cartId)
+        {
+            var books = _table.Where(b => b.CartId.Equals(cartId)).ToList();
+
+            return books;
+        }
     }
 }

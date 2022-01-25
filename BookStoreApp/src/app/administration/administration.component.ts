@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import { RoleEnum } from '../models/user.model';
 
 @Component({
   selector: 'app-administration',
@@ -26,6 +27,10 @@ export class AdministrationComponent implements OnInit {
         err => {console.log(err);}
       );
     }
+  }
+
+  getRoleName(role:RoleEnum){
+      return RoleEnum[role];
   }
 
 }

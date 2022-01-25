@@ -1,5 +1,4 @@
 ﻿using LibraryAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -33,6 +32,31 @@ namespace LibraryAPI.Controllers
             }
 
             return Ok(success);
+        }
+
+        // PUT: api/Cart/{itemId}
+        [HttpPut("{itemId}")]
+        public async Task<IActionResult> RemoveItem(Guid itemId)
+        {
+            if (itemId.Equals(null))
+            {
+                return BadRequest();
+            }
+
+            var success = await _cartService.RemoveItem(itemId);
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return Ok(success);
+        }
+
+        [HttpGet("{userId}")]
+        public IActionResult GetItems(Guid userId)
+        {
+            var books = _cartService.GetCartItems(userId);
+            return Ok(books);
         }
 
     }
